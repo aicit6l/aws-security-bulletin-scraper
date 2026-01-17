@@ -56,3 +56,26 @@ print(df)
 
 # exporting dataframe into a cvs file
 df.to_csv('output.csv', index=False)
+
+
+
+### AWS BULLETIN SECTION
+
+# target site
+url = 'https://aws.amazon.com/security/security-bulletins/'
+
+# creating an HTTP headers dictionary containing the new User Agent
+headers = { 'User-Agent': 'ozilla/5.0' }
+
+# requesting target site using the header agent
+page = requests.get(url, headers=headers)
+
+# parsing the HTML from page.text into a BeautifulSoup object for extraction
+soup = BeautifulSoup(page.text, 'lxml')
+
+# checking results
+# print(soup)
+
+
+# finding target div containing list of bulletins
+targetSoup = soup.find('div', class_ = 'rgic_0f10b411 rgic_85859631 rgic_bf97105f')
